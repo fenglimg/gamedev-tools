@@ -1,0 +1,17 @@
+{
+    "name": "gamedev-tools-index-generator",
+    "version": "1.0.0",
+    "description": "生成游戏开发工具集的索引页面",
+    "main": "generate_index.js",
+    "scripts": {
+        "generate": "node generate_index.js"
+    },
+    "keywords": [
+        "gamedev",
+        "tools",
+        "index"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {}
+}

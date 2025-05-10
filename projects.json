@@ -1,0 +1,14 @@
+[
+  {
+    "name": "behavior3editor",
+    "url": "https://fenglimg.github.io/gamedev-tools/behavior3editor",
+    "description": "<p>!<a href=\"preview.png\">interface preview</a>\r\n\r\n<strong>Behavior3 Editor</strong> is the official visual editor for the <strong>Behavior3</strong> libraries. It can be accessed online or you can download it to have handle local projects.</p>",
+    "preview_img": "behavior3editor\\preview.png"
+  },
+  {
+    "name": "texture-packer-plist-unpack",
+    "url": "https://fenglimg.github.io/gamedev-tools/texture-packer-plist-unpack",
+    "description": "<p>一个简单高效的基于Web的工具，用于将TexturePacker/Cocos2d-x生成的精灵图集（sprite sheets）拆分成单独的图像文件。\r\n\r\n!<a href=\"preview.png\">工具预览</a></p>",
+    "preview_img": ""
+  }
+]
