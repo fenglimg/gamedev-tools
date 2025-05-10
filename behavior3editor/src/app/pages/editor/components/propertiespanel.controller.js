@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   angular
@@ -11,7 +11,7 @@
   ];
 
   function PropertiespanelController($scope,
-                                     $window) {
+    $window) {
     var vm = this;
     vm.original = null;
     vm.block = null;
@@ -31,18 +31,22 @@
       if (s.length === 1) {
         vm.original = s[0];
         vm.block = {
-          title       : vm.original.title,
-          description : vm.original.description,
-          properties  : tine.merge({}, vm.original.properties)
+          title: vm.original.title,
+          description: vm.original.description,
+          properties: tine.merge({}, vm.original.properties)
         };
       } else {
-        vm.original = false;
-        vm.block = false;
+        vm.original = null;
+        vm.block = {
+          title: '',
+          description: '',
+          properties: {}
+        };
       }
     }
     function _event(e) {
-      setTimeout(function() {$scope.$apply(function() { _activate(); });}, 0);
-      
+      setTimeout(function () { $scope.$apply(function () { _activate(); }); }, 0);
+
     }
     function _create() {
       $window.editor.on('blockselected', _event);
