@@ -12,9 +12,24 @@ class WasmLoader {
         
         // 模块配置信息
         this.moduleConfigs = {
+            'avif': {
+                mainUrl: 'avif/avif.wasm',
+                jsUrl: 'avif/avif.js',
+                loaded: false
+            },
+            'jxl': {
+                mainUrl: 'jxl/jxl.wasm',
+                jsUrl: 'jxl/jxl.js',
+                loaded: false
+            },
             'mozjpeg': {
                 mainUrl: 'mozjpeg/mozjpeg.wasm',
                 jsUrl: 'mozjpeg/mozjpeg.js',
+                loaded: false
+            },
+            'oxipng': {
+                mainUrl: 'oxipng/oxipng.wasm',
+                jsUrl: 'oxipng/oxipng.js',
                 loaded: false
             },
             'pngquant': {
@@ -22,6 +37,16 @@ class WasmLoader {
                 jsUrl: 'pngquant/pngquant.js',
                 loaded: false
             },
+            'qoi': { 
+                mainUrl: 'qoi/qoi.wasm',
+                jsUrl: 'qoi/qoi.js',
+                loaded: false
+            },
+            'webp': {
+                mainUrl: 'webp/webp.wasm',
+                jsUrl: 'webp/webp.js',
+                loaded: false
+            },   
             // 其他编解码器...
         };
     }
@@ -111,6 +136,14 @@ class WasmLoader {
                 
                 // 5. 保存并返回模块
                 this.modules[moduleName] = module;
+                
+                // 6. 对于pngquant模块，确保encode函数可用
+                if (moduleName === 'pngquant' && !module.encode && window.pngquantModule && window.pngquantModule.encode) {
+                    console.log('从全局pngquantModule复制encode函数到加载的模块');
+                    module.encode = window.pngquantModule.encode;
+                    module.quantize = window.pngquantModule.quantize;
+                }
+                
                 config.loaded = true;
                 return module;
             } catch (error) {

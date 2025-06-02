@@ -1,6 +1,21 @@
 
 var Module = (function() {
-  var _scriptDir = import.meta.url;
+  var _scriptDir = (function() {
+    try {
+      if (document.currentScript) {
+        return document.currentScript.src;
+      }
+      var scripts = document.getElementsByTagName('script');
+      for(var i = scripts.length - 1; i >= 0; i--) {
+        if(scripts[i].src && scripts[i].src.indexOf('avif.js') !== -1) {
+          return scripts[i].src;
+        }
+      }
+      return '';
+    } catch(e) {
+      return '';
+    }
+  })();
   
   return (
 function(Module) {

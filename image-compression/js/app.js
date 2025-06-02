@@ -297,10 +297,24 @@ async function initApp() {
         
         const originalSize = formatFileSize(result.originalSize);
         const compressedSize = formatFileSize(result.compressedSize);
+        const sizeDifference = result.originalSize - result.compressedSize;
         const savingPercentage = Math.round(result.compressionRatio * 100);
         
+        // 判断文件大小是增加还是减少
+        let sizeChangeHtml;
+        if (sizeDifference > 0) {
+            // 大小减少，显示绿色减号
+            sizeChangeHtml = `<span class="decrease">-${formatFileSize(sizeDifference)}</span>`;
+        } else if (sizeDifference < 0) {
+            // 大小增加，显示红色加号
+            sizeChangeHtml = `<span class="increase">+${formatFileSize(Math.abs(sizeDifference))}</span>`;
+        } else {
+            // 大小不变
+            sizeChangeHtml = '大小无变化';
+        }
+        
         stats.innerHTML = `
-            原始大小: ${originalSize} → 压缩后: ${compressedSize}
+            原始大小: ${originalSize} → 压缩后: ${compressedSize} ${sizeChangeHtml}
             <span class="result-saving">(节省 ${savingPercentage}%)</span>
         `;
         
@@ -369,10 +383,21 @@ async function initApp() {
         originalSizeElement.textContent = formatFileSize(originalSize);
         compressedSizeElement.textContent = formatFileSize(compressedSize);
         
+        const sizeDifference = originalSize - compressedSize;
         const savingPercentage = originalSize > 0 ? 
-            Math.round((originalSize - compressedSize) / originalSize * 100) : 0;
+            Math.round(sizeDifference / originalSize * 100) : 0;
         
-        savedSizeElement.textContent = savingPercentage + '%';
+        // 根据大小变化添加颜色标记
+        if (sizeDifference > 0) {
+            // 大小减少，显示绿色减号
+            savedSizeElement.innerHTML = `<span class="decrease">-${formatFileSize(sizeDifference)}</span> (${savingPercentage}%)`;
+        } else if (sizeDifference < 0) {
+            // 大小增加，显示红色加号
+            savedSizeElement.innerHTML = `<span class="increase">+${formatFileSize(Math.abs(sizeDifference))}</span> (${Math.abs(savingPercentage)}%)`;
+        } else {
+            // 大小不变
+            savedSizeElement.textContent = '大小无变化 (0%)';
+        }
     }
 
     /**

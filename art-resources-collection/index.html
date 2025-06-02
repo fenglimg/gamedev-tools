@@ -1,41 +1,333 @@
-1.3d模型和贴图
-描述：实拍和3D扫描的贴图和模型资源
-https://www.textures.com/library
-
-描述：HDRI全景贴图首选资源，UE官方文档推荐
-https://polyhaven.com/hdris
-
-描述:国内最大的美术资源论坛，集合资源、教程、作品分享、插件笔刷等
-https://www.element3ds.com/
-
-描述：世界级的美术大神都在这里，有大神自创的笔刷、插件、shader、教程等可供下载
-https://www.artstation.com/?sort_by=community&dimension=all
-
-描述：角色动画动作捕捉资源库
-https://www.mixamo.com/#/
-
-2.2d游戏图标
-描述：免费游戏图标
-https://game-icons.net/
-
-描述：游戏图标资源
-https://opengameart.org/
-
-描述：游戏资源分享
-https://kenney.nl/
-
-3.游戏音效
-描述：免费游戏音效
-https://freesound.org/
-
-描述：游戏音效资源
-https://dova-s.jp/
-
-4.应用图标
-描述：一键生成所有尺寸的应用图标
-https://icon.wuruihong.com/#/ios
-
-描述: 根据应用名生成应用icon
-https://emblemmatic.org/markmaker/#/
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏开发资源收集 | Game Dev Resources</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--dark-color);
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .resource-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .resource-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .resource-card p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .resource-link {
+            color: var(--accent-color);
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>游戏开发资源收集</h1>
+        <p>为游戏开发者提供的高质量素材资源导航</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#3d-models">3D模型和贴图</a></li>
+            <li><a href="#2d-icons">2D游戏图标</a></li>
+            <li><a href="#game-audio">游戏音效</a></li>
+            <li><a href="#app-icons">应用图标</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="3d-models">
+            <h2>1. 3D模型和贴图</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <a href="https://www.textures.com/library" target="_blank">
+                        <div class="card-content">
+                            <h3>Textures.com</h3>
+                            <p>实拍和3D扫描的贴图和模型资源</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://polyhaven.com/hdris" target="_blank">
+                        <div class="card-content">
+                            <h3>Poly Haven</h3>
+                            <p>HDRI全景贴图首选资源，UE官方文档推荐</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://www.element3ds.com/" target="_blank">
+                        <div class="card-content">
+                            <h3>Element 3DS</h3>
+                            <p>国内最大的美术资源论坛，集合资源、教程、作品分享、插件笔刷等</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://www.artstation.com/?sort_by=community&dimension=all" target="_blank">
+                        <div class="card-content">
+                            <h3>ArtStation</h3>
+                            <p>世界级的美术大神都在这里，有大神自创的笔刷、插件、shader、教程等可供下载</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://www.mixamo.com/#/" target="_blank">
+                        <div class="card-content">
+                            <h3>Mixamo</h3>
+                            <p>角色动画动作捕捉资源库</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="2d-icons">
+            <h2>2. 2D游戏图标</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <a href="https://game-icons.net/" target="_blank">
+                        <div class="card-content">
+                            <h3>Game-icons.net</h3>
+                            <p>免费游戏图标</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://opengameart.org/" target="_blank">
+                        <div class="card-content">
+                            <h3>OpenGameArt</h3>
+                            <p>游戏图标资源</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://kenney.nl/" target="_blank">
+                        <div class="card-content">
+                            <h3>Kenney</h3>
+                            <p>游戏资源分享</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="game-audio">
+            <h2>3. 游戏音效</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <a href="https://freesound.org/" target="_blank">
+                        <div class="card-content">
+                            <h3>Freesound</h3>
+                            <p>免费游戏音效</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://dova-s.jp/" target="_blank">
+                        <div class="card-content">
+                            <h3>DOVA-SYNDROME</h3>
+                            <p>游戏音效资源</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="app-icons">
+            <h2>4. 应用图标</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <a href="https://icon.wuruihong.com/#/ios" target="_blank">
+                        <div class="card-content">
+                            <h3>图标工场</h3>
+                            <p>一键生成所有尺寸的应用图标</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="resource-card">
+                    <a href="https://emblemmatic.org/markmaker/#/" target="_blank">
+                        <div class="card-content">
+                            <h3>Mark Maker</h3>
+                            <p>根据应用名生成应用icon</p>
+                            <span class="resource-link">访问网站 →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2023 游戏开发资源收集 | 收集整理了游戏开发过程中可能需要的各类美术和音效资源</p>
+    </footer>
+</body>
+</html>
 
 

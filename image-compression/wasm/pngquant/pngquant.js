@@ -34,11 +34,3 @@ var Module=typeof Module!=="undefined"?Module:{};var readyPromiseResolve,readyPr
 
 // 导出模式，兼容多种使用场景
 var pngquantModule = Module; 
-
-// 支持CommonJS导出
-if (typeof exports === 'object' && typeof module === 'object')
-  module.exports = Module;
-else if (typeof define === 'function' && define.amd)
-  define([], function() { return Module; });
-else if (typeof exports === 'object')
-  exports["Module"] = Module;
